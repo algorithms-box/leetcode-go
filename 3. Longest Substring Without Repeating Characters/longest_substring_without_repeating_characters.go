@@ -10,10 +10,15 @@ func lengthOfLongestSubstring(s string) int {
 	for left_cursor := 0; left_cursor < len(s); left_cursor++ {
 		tmpMap := make(map[byte]int)
 		for right_cursor := 0; right_cursor < len(s); right_cursor++ {
-			if _, ok := tmpMap[s[right_cursor]]; ok || right_cursor == len(s)-1 {
-				break
+			if right_cursor >= left_cursor {
+				// Note, if the substring without repeating chars is end with tail,
+				// then we need take care of that
+				if _, ok := tmpMap[s[right_cursor]]; ok || right_cursor == len(s) {
+					break
+				}
+				// in fact, here we can store anything in tmpMap, we don't care the value
+				tmpMap[s[right_cursor]] = right_cursor
 			}
-			tmpMap[s[right_cursor]] = right_cursor
 		}
 		fmt.Printf("length %d, map is %+v \n", len(tmpMap), tmpMap)
 		max_length = max(max_length, len(tmpMap))
