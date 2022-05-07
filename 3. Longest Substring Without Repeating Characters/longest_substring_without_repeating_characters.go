@@ -3,10 +3,7 @@ package main
 import "fmt"
 
 func lengthOfLongestSubstring(s string) int {
-	tmpChar := []byte(s)
-	fmt.Println(tmpChar)
 	max_length := 0
-
 	for left_cursor := 0; left_cursor < len(s); left_cursor++ {
 		tmpMap := make(map[byte]int)
 		for right_cursor := 0; right_cursor < len(s); right_cursor++ {
@@ -20,7 +17,7 @@ func lengthOfLongestSubstring(s string) int {
 				tmpMap[s[right_cursor]] = right_cursor
 			}
 		}
-		fmt.Printf("length %d, map is %+v \n", len(tmpMap), tmpMap)
+		// fmt.Printf("length %d, map is %+v \n", len(tmpMap), tmpMap)
 		max_length = max(max_length, len(tmpMap))
 	}
 	return max_length
