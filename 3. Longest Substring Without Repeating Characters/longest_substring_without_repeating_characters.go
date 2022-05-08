@@ -3,6 +3,9 @@ package main
 import "fmt"
 
 func lengthOfLongestSubstring(s string) int {
+	if len(s) <= 1 {
+		return len(s)
+	}
 	max_length := 0
 	for left_cursor := 0; left_cursor < len(s); left_cursor++ {
 		tmpMap := make(map[byte]int)
